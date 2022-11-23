@@ -8,8 +8,9 @@ global TFname ## second field
 global tnuminscpt ## third field
 global Taffil ## fourth field
 
+
 ## Max Structures of a Bloc
-maxStructures = 1
+maxStructures = 8
 ## max size of 1st field 
 TNum = 10
 ## max size of 2nd field 
@@ -124,8 +125,8 @@ def entete(file,offset):
 def Display_File():
     fn=input('Entrer The Name of File To Display')
     ## another Try in case anything happend
-    try:
-        with open(fn,'rb') as f:
+    # try:
+    with open(fn,'rb') as f:
             
             
             ## the second characeterize(how many blocks are in the file)
@@ -140,8 +141,8 @@ def Display_File():
                 for j in range(buf_nb):
                     print(Display_Structure(buf_tab[j]))# afficher l'enregitrement
                 print('\n')                   
-    except Exception:
-        print("An Error has Happend")
+    # except Exception:
+    #     print("An Error has Happend")
         
 ## here we are displaying the Structure by slicing the desired value we want 
 def Display_Structure(e):
@@ -195,12 +196,12 @@ def insertion(fn):
             ## Getting the characetrization
             nb = entete(f,1)
             buff = lireBloc(f,nb-1)
-            
             Full = True
             
             for j in range(maxStructures):
                 ## if we find a empty Structure with no key we insert 
                 if buff[1][j][:TNum].replace('#','') == '':
+                    print("modified")
                     buff[0] += 1
                     affecter_entete(f,0,entete(f,0)+1)
                     buff[1][j] = etud
@@ -224,7 +225,7 @@ def DeleteLoGICALLY():
         ## Opening the file in read and write mode
         with open(fn,'r+b') as f:
             ## we Search
-            if pos := Search(fn,K):
+            if pos := Search(fn,K): 
                 i,j = pos[0]-1,pos[1]-1
                 buff = lireBloc(f,i)
                 buff[1][j] = f'{buff[1][j][:-1]}1'
@@ -240,7 +241,7 @@ def DeletePhysically():
     try:
         with open(fn,"r+b") as f:
             nb = entete(f,1)
-            if pos := recherche(fn,K):
+            if pos := Search(fn,K):
                 i,j = pos[0]-1,pos[1]-1
                 ## Decalling 
                 while i < nb:
@@ -398,3 +399,4 @@ def main():
         Choice(choice)
         ans = input('Do You Want To Do Another Operation Y/n? ')
 main()
+

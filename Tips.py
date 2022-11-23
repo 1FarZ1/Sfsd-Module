@@ -25,3 +25,17 @@
             """
 ## 5th Tip
   # print(f"buff 1{str(buff)}")
+  
+  
+## 6th Tip
+
+                                # print(f"buff 2{str(buff)}")
+
+
+                                # print("buff1"+str(i))
+## 7th tip
+
+     # print("last"+str(i))
+
+
+                                # print(f'last {buff}')

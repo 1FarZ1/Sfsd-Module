@@ -39,3 +39,17 @@
 
 
                                 # print(f'last {buff}')
+#8th tip
+## i created a Class To try remove the useless bad implementation of engistrement in python (dedicace el hougra)
+# class Etudiant:
+#     def __init__(self,tnom,tprénom,tnuminscpt):
+#         self._tnom=tnom
+#         self._tprénom=tprénom
+#         self._tnuminscpt=tnuminscpt
+#       # getter method
+#     def get_tnom(self):
+#         return self.tnom
+#     # setter method
+#     def set_tnom(self, newValue):
+#         self.tnom = newValue
+# ilyas=Etudiant("ilyas","brihi","2312172")

@@ -1,35 +1,24 @@
 from pickle import dumps, loads ## pickle gives the 2 methodes that help u to write binary (wahda t9ra , wahda tktb)
 from sys import getsizeof ## sys gices the methode getSizeOf that gives u the size of the files that u give as parameter 
+
 ## Variables
 global maxStructures ## Max Structures to be Stored In a Single Bloc 
 global TLname ## first field
 global TFname ## second field
 global tnuminscpt ## third field
 global Taffil ## fourth field
-## i created a Class To try remove the useless bad implementation of engistrement in python (dedicace el hougra)
-# class Etudiant:
-#     def __init__(self,tnom,tprénom,tnuminscpt):
-#         self._tnom=tnom
-#         self._tprénom=tprénom
-#         self._tnuminscpt=tnuminscpt
-#       # getter method
-#     def get_tnom(self):
-#         return self.tnom
-#     # setter method
-#     def set_tnom(self, newValue):
-#         self.tnom = newValue
-# ilyas=Etudiant("ilyas","brihi","2312172")
+
 ## Max Structures of a Bloc
 maxStructures = 1
-## size of 1st field 
+## max size of 1st field 
 TNum = 10
-## size of 2nd field 
+## max size of 2nd field 
 TLname = 20
-## size of 3rd field 
+## max size of 3rd field 
 TFname = 20
-## size of 4th field 
+## max size of 4th field 
 Taffil = 20
-## size of all the Structure
+## max size of all the Structure
 TStudent = TNum + TLname + TFname + Taffil + 1
 ## fixing our size of Structure
 TStructure = '#' * TStudent
@@ -315,7 +304,7 @@ def fragmentation():
                     
                     if buff[1][j].replace('#','') != '':
                         if int(buff[1][j][:TNum].replace('#','')) < key1:
-                            n1 += 1
+                     
                             if j1 < maxStructures:
                                 buff1[0] += 1
                                 buff1[1][j1] = buff[1][j]                   
@@ -396,7 +385,7 @@ def Choice(choice):
         insertion(fn) 
 def main():
     ans = 'Y'
-    while (ans == 'Y'):
+    while (ans in ["Y","y"]):
         print(""" | Choose |
                  1. créer_fichier
                  2. afficher_fichier
@@ -407,5 +396,5 @@ def main():
                  7. fragmentation""")                
         choice = int(input())
         Choice(choice)
-        ans = input('Avez vous une autre opération O/N? ')
+        ans = input('Do You Want To Do Another Operation Y/n? ')
 main()

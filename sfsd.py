@@ -41,14 +41,17 @@ def resize_chaine(chaine, MaxSize):
 def CreateFile():
     fn=input('Enter The Name of The File :')
     ## i and j to itterate over blocs and Structures
-    j=0
-    i=0
+    j=0 ## for Structs
+    i=0 ## for blocs
     n=0
     
+    
+    ## table t3 les buffeur nrigliwh
     buf_tab=[TStructure]*maxStructures 
-    buf_nb=0 ## Number of Structures in The Buffer
+    buf_nb=0 ## initial Number of Structures in The Buffer
     ## try to in case anything happend and error occurred so we can handle it 
     try:
+        
         f = open(fn,'wb')
         ans='Y'
         while ans in {'Y', 'y'}:
@@ -72,9 +75,7 @@ def CreateFile():
             
             ## how many Structures we have 
             n=n+1
-            
-            
-            
+            ## nbdaw nktbo fe lbloc 
             if (j<maxStructures):
                 buf_tab[j]=etud #putting Structure in the array
                 buf_nb=buf_nb+1 #adding the number of Structures we have in the Buffer
@@ -125,9 +126,8 @@ def entete(file,offset):
 def Display_File():
     fn=input('Entrer The Name of File To Display')
     ## another Try in case anything happend
-    # try:
-    with open(fn,'rb') as f:
-            
+    try:
+     with open(fn,'rb') as f:
             
             ## the second characeterize(how many blocks are in the file)
             secondcar=entete(f,1)  
@@ -141,16 +141,17 @@ def Display_File():
                 for j in range(buf_nb):
                     print(Display_Structure(buf_tab[j]))# afficher l'enregitrement
                 print('\n')                   
-    # except Exception:
-    #     print("An Error has Happend")
+    except Exception:
+        print("An Error has Happend")
         
 ## here we are displaying the Structure by slicing the desired value we want 
-def Display_Structure(e):
-    num = e[:TNum].replace('#', ' ')
-    nom = e[TNum:TLname].replace('#', ' ')
-    prénom = e[TFname:Taffil].replace('#', ' ')
-    affiliation = e[Taffil:-1].replace('#', ' ')
-    return f'{num} {nom} {prénom} {affiliation} {e[-1]}'
+def Display_Structure(Structure):
+    num = Structure[:TNum].replace('#', ' ')
+    nom = Structure[TNum:TLname].replace('#', ' ')
+    prénom = Structure[TFname:Taffil].replace('#', ' ')
+    affiliation = Structure[Taffil:-1].replace('#', ' ')
+ 
+    return f'{num} {nom} {prénom} {affiliation} {Structure[-1]}'
 ## A Function To Search A  particular Element with 
 def Search(fn,Key):
     buff = 0
@@ -165,6 +166,7 @@ def Search(fn,Key):
                     if buff[1][j][:TNum].replace('#','') == Key:
                         Found = True
                         print(f"Elemenet Found  in Bloc({i+1}) and Structure({j+1})")
+                        print(buff[1][j][TFname:Taffil].replace("#",""))
                         ## Returning The index of Elemenet
                         return (i+1,j+1)
                 i += 1
@@ -196,18 +198,19 @@ def insertion(fn):
             ## Getting the characetrization
             nb = entete(f,1)
             buff = lireBloc(f,nb-1)
-            Full = True
+            buff[0]+1
+            Full = True 
+            trouve =False
             
             for j in range(maxStructures):
                 ## if we find a empty Structure with no key we insert 
-                if buff[1][j][:TNum].replace('#','') == '':
-                    print("modified")
+                if buff[1][j][:TNum].replace('#','') == '' and not trouve:
                     buff[0] += 1
                     affecter_entete(f,0,entete(f,0)+1)
                     buff[1][j] = etud
                     ecrireBloc(f,nb-1,buff)
                     Full = False
-                    
+                    trouve=True
             ## if full we enter in  a new bloc
             if Full:
                 buff = Tbloc

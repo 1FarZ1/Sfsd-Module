@@ -132,7 +132,7 @@ def recherche():
                 trouv = True
             else:
                 j += 1
-        if(not(trouv)):
+        if(not trouv ):
             i += 1
     if(trouv == True):
         liste = [trouv,i,j]
